@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1790257614 source:c:\users\ucenik\desktop\zad3\main.cpp
+	<iostream>
+	<string>
+	<iomanip>
+
