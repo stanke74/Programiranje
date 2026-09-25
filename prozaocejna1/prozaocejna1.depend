@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1790319326 source:c:\users\godof\desktop\hacker\prozaocejna1\main.cpp
+	<iostream>
+	<string>
+	<iomanip>
+
