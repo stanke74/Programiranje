@@ -1,0 +1,77 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+const double CIJENA_ULAZNICE = 5.0;
+const int PRAG_POPUSTA = 5;
+const double STOPA_POPUSTA = 0.10;
+
+int ukupnoUlaznica = 0;
+double ukupniPrihod = 0.0;
+
+bool ispravanUnos(int kolicina);
+double izracunajIznos(int kolicina);
+void evidentirajKupnju(int kolicina, double iznos);
+void ispisiKupnju(int redniBroj, double iznos);
+void ispisiSazetak();
+
+int main() {
+    int redniBroj;
+    int kolicina;
+    double iznos;
+
+    for (redniBroj = 1; redniBroj <= 3; redniBroj++) {
+        
+        do {
+            cout << "Kupnja " << redniBroj << " - unesi broj ulaznica (1-30): ";
+            cin >> kolicina;
+        } while (ispravanUnos(kolicina) == false);
+
+        iznos = izracunajIznos(kolicina);
+        evidentirajKupnju(kolicina, iznos);
+        ispisiKupnju(redniBroj, iznos);
+    }
+
+    ispisiSazetak();
+
+    return 0;
+}
+
+
+bool ispravanUnos(int kolicina) {
+    if (kolicina >= 1 && kolicina <= 30) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+double izracunajIznos(int kolicina) {
+    double osnovniIznos = kolicina * CIJENA_ULAZNICE;
+    double konacniIznos;
+
+    if (kolicina >= PRAG_POPUSTA) {
+        konacniIznos = osnovniIznos - (osnovniIznos * STOPA_POPUSTA);
+    } else {
+        konacniIznos = osnovniIznos;
+    }
+
+    return konacniIznos;
+}
+
+void evidentirajKupnju(int kolicina, double iznos) {
+    ukupnoUlaznica = ukupnoUlaznica + kolicina;
+    ukupniPrihod = ukupniPrihod + iznos;
+}
+
+void ispisiKupnju(int redniBroj, double iznos) {
+    cout << fixed << setprecision(2);
+    cout << "Kupnja " << redniBroj << ": " << iznos << " EUR" << endl;
+}
+
+void ispisiSazetak() {
+    cout << fixed << setprecision(2);
+    cout << "Ukupno prodanih ulaznica: " << ukupnoUlaznica << endl;
+    cout << "Ukupni prihod: " << ukupniPrihod << " EUR" << endl;
+}
